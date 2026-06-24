@@ -21,7 +21,7 @@ nav{
 }
 
 .logo{
-    color:#4a49d3;
+    color:#480080;
     font-size:1.4rem;
     font-weight:bold;
 }
@@ -34,12 +34,12 @@ nav ul{
 
 nav a{
     text-decoration:none;
-    color:#4a49d3;
+    color:#480080;
     font-weight:600;
 }
 
 .hero{
-    background:#4a49d3;
+    background:#480080;
     color:white;
     min-height:90vh;
 
@@ -63,7 +63,7 @@ nav a{
 
 .btn{
     background:white;
-    color:#4a49d3;
+    color:#480080;
     padding:14px 30px;
     border-radius:8px;
     text-decoration:none;
@@ -72,12 +72,12 @@ nav a{
 
 .section-white{
     background:white;
-    color:#4a49d3;
+    color:#480080;
     padding:100px 8%;
 }
 
 .section-purple{
-    background:#4a49d3;
+    background:#480080;
     color:white;
     padding:100px 8%;
 }
@@ -95,7 +95,7 @@ h2{
 }
 
 .card{
-    border:2px solid #4a49d3;
+    border:2px solid #480080;
     padding:25px;
     border-radius:12px;
 }
