@@ -4,8 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gecp Solutions</title>
+    <title>Gecp Solutions | Reportes en Power BI y Machine Learning para empresas</title>
+    <meta name="description" content="Convertimos los datos de tu empresa en reportes claros en Power BI y modelos de machine learning que predicen ventas, clientes en riesgo y más.">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Instrument+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -13,118 +17,222 @@
 
     <nav>
         <div class="logo">Gecp Solutions</div>
-
         <ul>
-            <li><a href="#inicio">Inicio</a></li>
             <li><a href="#servicios">Servicios</a></li>
-            <li><a href="#beneficios">Beneficios</a></li>
-            <li><a href="#contacto">Contacto</a></li>
+            <li><a href="#prediccion">Predicción</a></li>
+            <li><a href="#proceso">Cómo trabajamos</a></li>
+            <li><a href="#faq">Preguntas</a></li>
+            <li><a class="nav-cta" href="#contacto">Contacto</a></li>
         </ul>
     </nav>
 
+    <!-- HERO -->
     <section id="inicio" class="hero">
-
-        <div class="hero-content">
-
-            <h1>
-                Transformamos hojas de Excel en información para tomar decisiones.
-            </h1>
-
+        <div>
+            <h1>Deja de armar reportes. Empieza a decidir con tus datos.</h1>
             <p>
-                Dashboards interactivos, automatización de procesos y análisis de datos para empresas.
+                Creamos reportes en Power BI que se actualizan solos y modelos de machine learning
+                que te dicen qué va a pasar con tus ventas, tus clientes y tu inventario.
             </p>
-
-            <a href="#contacto" class="btn">
-                Solicitar Información
-            </a>
-
+            <a href="#contacto" class="btn">Agenda una conversación</a>
+            <a href="#servicios" class="btn btn-ghost">Ver qué hacemos</a>
+            <p class="hero-note">Sin compromiso. Primero entendemos tu negocio, después hablamos de herramientas.</p>
         </div>
 
+        <div class="mock" aria-label="Ejemplo ilustrativo de un reporte en Power BI">
+            <div class="mock-top"><span>Resumen comercial</span><span>Ejemplo ilustrativo</span></div>
+            <div class="kpis">
+                <div class="kpi"><small>Ventas del mes</small><b>$128M</b></div>
+                <div class="kpi"><small>Cumplimiento meta</small><b>94%</b></div>
+                <div class="kpi"><small>Clientes en riesgo</small><b>37</b></div>
+            </div>
+            <div class="bars">
+                <span style="height:45%"></span><span style="height:55%"></span><span style="height:50%"></span>
+                <span style="height:68%"></span><span style="height:74%"></span><span style="height:82%"></span>
+                <span class="hl" style="height:60%"></span><span class="hl" style="height:66%"></span>
+            </div>
+            <div class="alert">Proyección: las barras amarillas son lo que el modelo predice para los próximos meses.</div>
+        </div>
     </section>
 
-    <section id="servicios" class="section-white">
-
-        <h2>Servicios</h2>
+    <!-- PROBLEMA -->
+    <section class="section-soft">
+        <h2>¿Te suena familiar?</h2>
+        <p class="lead">Si alguna de estas frases se escucha en tu empresa, tus datos están trabajando menos de lo que podrían.</p>
 
         <div class="cards">
-
             <div class="card">
-                <h3>Dashboards</h3>
-
-                <p>
-                    Visualización de ventas, finanzas, inventarios y operaciones.
-                </p>
+                <p class="q">"Los números de cada área no coinciden."</p>
+                <p>Cada equipo maneja su propio Excel y nadie sabe cuál es la cifra correcta.</p>
             </div>
-
             <div class="card">
-                <h3>Automatización</h3>
-
-                <p>
-                    Eliminamos tareas repetitivas mediante Python y procesos automáticos.
-                </p>
+                <p class="q">"El reporte llega cuando la decisión ya se tomó."</p>
+                <p>Alguien tarda días copiando y pegando información que debería estar lista cada mañana.</p>
             </div>
-
             <div class="card">
-                <h3>Consolidación de Datos</h3>
-
-                <p>
-                    Integramos múltiples archivos Excel en una única fuente confiable.
-                </p>
+                <p class="q">"Nos enteramos tarde de los problemas."</p>
+                <p>Un cliente se fue, un producto se agotó o un costo se disparó, y lo vimos semanas después.</p>
             </div>
-
         </div>
-
     </section>
 
-    <section id="beneficios" class="section-purple">
+    <!-- SERVICIOS -->
+    <section id="servicios" class="section-white">
+        <h2>Dos herramientas, un objetivo: que decidas mejor</h2>
+        <p class="lead">Una te muestra qué está pasando. La otra te anticipa qué va a pasar.</p>
 
-        <h2>¿Por qué trabajar con nosotros?</h2>
-
-        <div class="benefits">
-
-            <div>
-                <h3>Menos Tiempo</h3>
-                <p>Automatizamos procesos manuales.</p>
+        <div class="split">
+            <div class="panel">
+                <h3>Reportes en Power BI</h3>
+                <p>Paneles claros, conectados a tus archivos y sistemas, que se actualizan solos.</p>
+                <ul>
+                    <li>Todas tus cifras en una sola pantalla, con una única versión de la verdad</li>
+                    <li>Filtra por sucursal, producto, vendedor o fecha con un clic</li>
+                    <li>Alertas visuales cuando algo se sale de la meta</li>
+                    <li>Acceso desde el computador o el celular, para toda tu gerencia</li>
+                    <li>Adiós a pegar datos a mano cada semana</li>
+                </ul>
             </div>
 
-            <div>
-                <h3>Más Control</h3>
-                <p>Información centralizada y actualizada.</p>
+            <div class="panel">
+                <h3>Modelos de Machine Learning</h3>
+                <p>Algoritmos entrenados con tus propios datos que encuentran patrones y hacen predicciones.</p>
+                <ul>
+                    <li>Anticipar cuánto vas a vender y cuánto inventario necesitas</li>
+                    <li>Detectar qué clientes están por irse, antes de que se vayan</li>
+                    <li>Agrupar clientes por comportamiento para dirigir mejor tus campañas</li>
+                    <li>Identificar operaciones inusuales o posibles fraudes</li>
+                    <li>Priorizar a quién llamar primero para vender o cobrar</li>
+                </ul>
             </div>
-
-            <div>
-                <h3>Mejores Decisiones</h3>
-                <p>Indicadores claros para actuar rápidamente.</p>
-            </div>
-
         </div>
-
     </section>
 
-    <section id="contacto" class="section-white">
+    <!-- PREDICCIÓN -->
+    <section id="prediccion" class="section-purple">
+        <h2>Preguntas que tus datos ya pueden responder</h2>
+        <p class="lead">No necesitas entender de algoritmos. Solo saber qué quieres resolver.</p>
 
-        <h2>Contacto</h2>
-        
-        <div>
-            <p>
-                ¿Quieres modernizar tus reportes?
-            </p>
+        <div class="cards">
+            <div class="card">
+                <p class="q">¿Cuánto vamos a vender el próximo trimestre?</p>
+                <p>Pronósticos de ventas y demanda para planear compras, personal y presupuesto con menos incertidumbre.</p>
+            </div>
+            <div class="card">
+                <p class="q">¿Qué clientes están a punto de irse?</p>
+                <p>Una lista priorizada para que tu equipo actúe a tiempo y retenga a los que más valen.</p>
+            </div>
+            <div class="card">
+                <p class="q">¿Quiénes son mis mejores clientes?</p>
+                <p>Segmentación por comportamiento de compra: cada grupo con su propia estrategia.</p>
+            </div>
+            <div class="card">
+                <p class="q">¿Qué productos se van a agotar o sobrar?</p>
+                <p>Inventario ajustado a la demanda real, con menos capital detenido en bodega.</p>
+            </div>
+            <div class="card">
+                <p class="q">¿Dónde se están yendo los costos?</p>
+                <p>Detección de gastos y transacciones fuera de lo normal, antes del cierre de mes.</p>
+            </div>
+            <div class="card">
+                <p class="q">¿A quién le ofrecemos qué?</p>
+                <p>Recomendaciones de producto por cliente para vender más sin llamar a todos.</p>
+            </div>
         </div>
+    </section>
 
-        <div>
-            <a class="btn" href="mailto:contacto@tudominio.com">
-                Escríbenos
-            </a>
+    <!-- ÁREAS -->
+    <section class="section-white">
+        <h2>Para cada área de tu empresa</h2>
+        <p class="lead">Empezamos por el área donde más duele y crecemos desde ahí.</p>
+
+        <div class="cards">
+            <div class="card">
+                <h3>Ventas y comercial</h3>
+                <p>Cumplimiento de metas, desempeño por vendedor, embudo de oportunidades y proyección de cierre.</p>
+            </div>
+            <div class="card">
+                <h3>Finanzas</h3>
+                <p>Flujo de caja, cartera, márgenes y presupuesto contra real, siempre al día.</p>
+            </div>
+            <div class="card">
+                <h3>Inventario y operaciones</h3>
+                <p>Rotación, quiebres de stock, tiempos de entrega y eficiencia de procesos.</p>
+            </div>
+            <div class="card">
+                <h3>Clientes y marketing</h3>
+                <p>Segmentos, retención, rentabilidad por cliente y resultados de campañas.</p>
+            </div>
         </div>
+    </section>
 
+    <!-- PROCESO -->
+    <section id="proceso" class="section-purple">
+        <h2>Así trabajamos</h2>
+        <p class="lead">Un proceso simple, con entregas visibles desde las primeras semanas.</p>
+
+        <ol class="steps">
+            <li>
+                <h3>Escuchamos</h3>
+                <p>Nos cuentas qué decisiones quieres tomar y qué datos tienes, aunque estén en Excel.</p>
+            </li>
+            <li>
+                <h3>Ordenamos</h3>
+                <p>Limpiamos y unificamos tus archivos y sistemas en una fuente confiable.</p>
+            </li>
+            <li>
+                <h3>Construimos</h3>
+                <p>Entregamos el reporte en Power BI y, si aplica, el modelo predictivo, con revisiones contigo.</p>
+            </li>
+            <li>
+                <h3>Acompañamos</h3>
+                <p>Capacitamos a tu equipo y damos soporte para que el reporte siga siendo útil.</p>
+            </li>
+        </ol>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section-white">
+        <h2>Preguntas frecuentes</h2>
+        <p class="lead">Las dudas más comunes de gerentes antes de empezar.</p>
+
+        <div class="faq">
+            <details>
+                <summary>¿Necesito tener un sistema o base de datos sofisticada?</summary>
+                <p>No. Muchas empresas empiezan con archivos de Excel. Si tienes un ERP o base de datos, también nos conectamos a ellos.</p>
+            </details>
+            <details>
+                <summary>¿Cuántos datos necesito para un modelo de machine learning?</summary>
+                <p>Depende de la pregunta. En la primera conversación revisamos tus datos y te decimos con honestidad si alcanzan o qué falta para lograrlo.</p>
+            </details>
+            <details>
+                <summary>¿Mis datos están seguros?</summary>
+                <p>Trabajamos solo con la información necesaria, bajo acuerdos de confidencialidad, y puedes mantener tus datos en tus propios sistemas.</p>
+            </details>
+            <details>
+                <summary>¿Mi equipo podrá usar los reportes sin ayuda técnica?</summary>
+                <p>Sí. Diseñamos pensando en gerentes y áreas no técnicas, y capacitamos a tu equipo al entregar.</p>
+            </details>
+            <details>
+                <summary>¿Qué pasa cuando cambian mis datos o mis necesidades?</summary>
+                <p>Los reportes se actualizan automáticamente con los datos nuevos. Si tu negocio cambia, los ajustamos contigo.</p>
+            </details>
+        </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto">
+        <h2>Cuéntanos qué decisión quieres tomar mejor</h2>
+        <p>
+            En una primera conversación revisamos tus datos y te decimos qué se puede lograr, sin tecnicismos y sin compromiso.
+        </p>
+        <a class="btn" href="mailto:contacto@tudominio.com?subject=Quiero%20informaci%C3%B3n%20sobre%20Power%20BI%20y%20Machine%20Learning">
+            Escríbenos
+        </a>
     </section>
 
     <footer>
-
-        <p>
-            © 2026 Gecp Solutions
-        </p>
-
+        <p>© 2026 Gecp Solutions · Barranquilla, Colombia</p>
     </footer>
 
 </body>
