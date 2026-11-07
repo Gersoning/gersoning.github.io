@@ -4,13 +4,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gecp Solutions | Dashboards en Power BI y Machine Learning para empresas</title>
-    <meta name="description" content="Reportes en Power BI que se actualizan solos varias veces al día, con los KPIs que tu gerencia necesita. Después, modelos de machine learning para predecir.">
+    <title>Gecp Solutions | Dashboards en Power BI y Machine Learning</title>
+    <meta name="description" content="Dashboards en Power BI que se actualizan solos y modelos de machine learning para tu empresa.">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Instrument+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        :root{
+            --purple:#480080;
+            --deep:#2e0053;
+            --lav:#f4edfa;
+            --ink:#1d1230;
+            --muted:#5d516d;
+            --gold:#ffc83d;
+            --line:#e3d6f0;
+            --good:#1b7f4b;
+            --bad:#b3261e;
+        }
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth;scroll-padding-top:76px}
+        body{font-family:"Instrument Sans",Arial,sans-serif;line-height:1.6;color:var(--ink);background:#fff}
+        h1,h2,h3{font-family:"Fraunces",Georgia,serif;line-height:1.2;font-weight:600}
+        :focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+
+        /* NAV */
+        nav{background:var(--purple);display:flex;justify-content:space-between;align-items:center;padding:14px 8%;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.25)}
+        .logo{color:#fff;font-family:"Fraunces",Georgia,serif;font-size:1.35rem;font-weight:700}
+        nav ul{display:flex;list-style:none;gap:24px;align-items:center}
+        nav a{text-decoration:none;color:#fff;font-weight:600;font-size:.95rem}
+        nav a:hover{color:var(--gold)}
+        nav .nav-cta{background:var(--gold);color:var(--deep);padding:9px 20px;border-radius:8px}
+        nav .nav-cta:hover{color:var(--deep)}
+
+        /* BOTONES */
+        .btn{background:var(--gold);color:var(--deep);padding:14px 30px;border-radius:8px;text-decoration:none;font:inherit;font-weight:700;display:inline-block;border:0;cursor:pointer}
+        .btn:hover{filter:brightness(1.07)}
+        .btn-ghost{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.6);margin-left:10px;padding:12px 26px}
+
+        /* HERO */
+        .hero{background:linear-gradient(135deg,var(--deep),var(--purple));color:#fff;padding:80px 8%;display:grid;grid-template-columns:1.1fr 1fr;gap:50px;align-items:center;min-height:85vh}
+        .hero h1{font-size:2.9rem;margin-bottom:18px}
+        .hero p{font-size:1.15rem;margin-bottom:30px;color:#eadcf6;max-width:50ch}
+
+        .mock{background:#fff;color:var(--ink);border-radius:16px;padding:22px;box-shadow:0 24px 60px rgba(0,0,0,.4)}
+        .mock-top{display:flex;justify-content:space-between;font-size:.8rem;color:var(--muted);margin-bottom:14px}
+        .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+        .kpi{background:var(--lav);border-radius:10px;padding:10px 12px}
+        .kpi small{display:block;font-size:.7rem;color:var(--muted)}
+        .kpi b{font-size:1.3rem;color:var(--purple)}
+        .bars{display:flex;align-items:flex-end;gap:9px;height:120px;border-bottom:2px solid var(--line)}
+        .bars span{flex:1;background:var(--purple);border-radius:4px 4px 0 0}
+        .bars span.hl{background:var(--gold)}
+        .mock .alert{margin-top:12px;font-size:.8rem;background:#fff6dc;border-left:4px solid var(--gold);padding:8px 12px;border-radius:4px}
+
+        /* SECCIONES */
+        section{padding:80px 8%}
+        .bg-white{background:#fff}
+        .bg-lav{background:var(--lav)}
+        .bg-purple{background:var(--purple)}
+        h2{font-size:2.2rem;text-align:center;margin-bottom:12px;color:var(--purple)}
+        .bg-purple h2{color:#fff}
+        .lead{text-align:center;max-width:58ch;margin:0 auto 44px;color:var(--muted);font-size:1.05rem}
+        .bg-purple .lead{color:#e6d6f5}
+
+        /* TARJETAS (todas iguales: blancas, con sombra y barra de color) */
+        .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px;max-width:1100px;margin:0 auto}
+        .card{background:#fff;color:var(--ink);border-radius:14px;padding:26px;border:1px solid var(--line);border-top:5px solid var(--purple);box-shadow:0 6px 18px rgba(72,0,128,.1)}
+        .bg-lav .card{border-color:#fff;border-top-color:var(--purple)}
+        .bg-purple .card{border:0;border-top:5px solid var(--gold);box-shadow:0 10px 26px rgba(0,0,0,.25)}
+        .ico{width:46px;height:46px;border-radius:12px;background:var(--lav);display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:14px}
+        .card h3{font-size:1.15rem;color:var(--purple);margin-bottom:6px}
+        .card p{color:var(--muted);font-size:.97rem}
+        .card.bad{border-top-color:var(--bad)}
+        .card.bad h3{color:var(--bad)}
+
+        /* KPI */
+        .tag{display:inline-block;font-size:.72rem;font-weight:700;padding:2px 10px;border-radius:99px;margin-bottom:4px}
+        .tag.mide{background:var(--lav);color:var(--purple)}
+        .tag.mejora{background:#fff1c2;color:#6b4a00}
+        .kpi-card p+p{margin-top:12px}
+
+        /* TABLERO */
+        .tablero{max-width:1100px;margin:0 auto}
+        .tablero .cap{text-align:right;font-size:.8rem;color:var(--muted);margin-bottom:10px}
+        .row{display:grid;grid-template-columns:88px 1fr 42px;gap:10px;align-items:center;font-size:.85rem;margin-bottom:10px}
+        .track{background:var(--lav);border-radius:99px;height:12px;overflow:hidden}
+        .track i{display:block;height:100%;background:var(--purple);border-radius:99px}
+        .track i.low{background:var(--gold)}
+        .row b{text-align:right}
+        .var{display:flex;justify-content:space-between;font-size:.92rem;padding:9px 0;border-bottom:1px solid var(--line)}
+        .up{color:var(--good);font-weight:700}
+        .down{color:var(--bad);font-weight:700}
+        .tablero .card p.nota{font-size:.8rem;margin-top:8px}
+
+        /* PASOS */
+        .steps{counter-reset:paso}
+        .step{counter-increment:paso;position:relative;padding-top:50px}
+        .step::before{content:counter(paso);position:absolute;top:-20px;left:22px;width:42px;height:42px;border-radius:50%;background:var(--purple);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;border:4px solid #fff}
+        .step.opt{border-top-color:var(--gold)}
+        .step.opt::before{background:var(--gold);color:var(--deep)}
+
+        .nota-box{max-width:760px;margin:36px auto 0;background:#fff;color:var(--ink);border-left:6px solid var(--gold);padding:18px 24px;border-radius:10px}
+
+        /* FAQ */
+        .faq{max-width:720px;margin:0 auto;display:grid;gap:12px}
+        details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 20px}
+        summary{cursor:pointer;font-weight:700;color:var(--purple)}
+        details p{margin-top:8px;color:var(--muted)}
+
+        /* FORM */
+        .form{background:#fff;color:var(--ink);max-width:600px;margin:0 auto;border-radius:16px;padding:32px;display:grid;gap:16px;box-shadow:0 24px 60px rgba(0,0,0,.35)}
+        .form label{display:grid;gap:6px;font-weight:600;font-size:.93rem;color:var(--purple)}
+        .form input,.form select,.form textarea{font:inherit;font-weight:400;color:var(--ink);padding:12px 14px;border:1px solid #cdb9e0;border-radius:8px;width:100%;background:#fff}
+        .form textarea{min-height:120px;resize:vertical}
+        .form .btn{background:var(--purple);color:#fff;justify-self:start}
+        .form small{color:var(--muted)}
+
+        footer{background:var(--deep);color:#fff;text-align:center;padding:26px}
+
+        @media(max-width:860px){
+            .hero{grid-template-columns:1fr;padding:56px 6%;min-height:auto}
+            .hero h1{font-size:2.1rem}
+            nav ul li:not(:last-child){display:none}
+            section{padding:60px 6%}
+            h2{font-size:1.75rem}
+            .btn-ghost{margin:12px 0 0}
+            .form{padding:22px}
+        }
+    </style>
 </head>
 
 <body>
@@ -22,30 +143,24 @@
             <li><a href="#dashboards">Dashboards</a></li>
             <li><a href="#kpis">KPIs</a></li>
             <li><a href="#ml">Machine Learning</a></li>
-            <li><a href="#proceso">Cómo trabajamos</a></li>
             <li><a class="nav-cta" href="#contacto">Contacto</a></li>
         </ul>
     </nav>
 
     <!-- HERO -->
-    <section id="inicio" class="hero">
+    <section class="hero" id="inicio">
         <div>
-            <h1>Todos tus números, siempre actualizados y en una sola pantalla.</h1>
-            <p>
-                Creamos dashboards en Power BI que se actualizan solos varias veces al día,
-                para que tu gerencia vea el mismo dato, sin Excel manual y sin depender de nadie.
-                Cuando estés listo, sumamos modelos de machine learning que predicen ventas y clientes en riesgo.
-            </p>
+            <h1>Tus reportes, siempre al día y sin Excel manual.</h1>
+            <p>Dashboards en Power BI que se actualizan solos varias veces al día. Después, modelos de machine learning para predecir ventas y clientes en riesgo.</p>
             <a href="#contacto" class="btn">Cuéntanos tu necesidad</a>
-            <a href="#kpis" class="btn btn-ghost">Ver qué indicadores tendrías</a>
-            <p class="hero-note">Sin compromiso. Primero entendemos tu negocio, después hablamos de herramientas.</p>
+            <a href="#kpis" class="btn btn-ghost">Ver KPIs</a>
         </div>
 
-        <div class="mock" aria-label="Ejemplo ilustrativo de un reporte en Power BI">
+        <div class="mock" aria-label="Ejemplo ilustrativo de un reporte">
             <div class="mock-top"><span>Resumen comercial</span><span>Ejemplo ilustrativo</span></div>
             <div class="kpis">
                 <div class="kpi"><small>Ventas del mes</small><b>$128M</b></div>
-                <div class="kpi"><small>Cumplimiento meta</small><b>94%</b></div>
+                <div class="kpi"><small>Cumplimiento</small><b>94%</b></div>
                 <div class="kpi"><small>vs año anterior</small><b>+12%</b></div>
             </div>
             <div class="bars">
@@ -53,283 +168,168 @@
                 <span style="height:68%"></span><span style="height:74%"></span><span style="height:82%"></span>
                 <span class="hl" style="height:60%"></span><span class="hl" style="height:66%"></span>
             </div>
-            <div class="alert">Las barras amarillas son una proyección hecha con machine learning.</div>
+            <div class="alert">En amarillo: proyección con machine learning.</div>
         </div>
     </section>
 
     <!-- PROBLEMAS -->
-    <section id="problemas" class="section-soft">
+    <section id="problemas" class="bg-lav">
         <h2>¿Te suena familiar?</h2>
-        <p class="lead">Son los problemas que más escuchamos de gerentes que manejan sus reportes en Excel.</p>
-
-        <div class="cards">
-            <div class="card">
-                <p class="q">"Todo depende de una persona."</p>
-                <p>Solo ella sabe actualizar el reporte. Si falta o está ocupada, nadie ve cifras nuevas.</p>
-            </div>
-            <div class="card">
-                <p class="q">"Excel es manual y lento."</p>
-                <p>Copiar, pegar y rehacer fórmulas cada semana. Se pierden horas y se cuelan errores que nadie ve.</p>
-            </div>
-            <div class="card">
-                <p class="q">"Los reportes no se actualizan bien."</p>
-                <p>Llegan con datos viejos o incompletos, y por eso nadie confía del todo en ellos.</p>
-            </div>
-            <div class="card">
-                <p class="q">"Cada quien tiene datos distintos."</p>
-                <p>Ventas, finanzas y operaciones muestran cifras diferentes, y la reunión se va en discutir cuál es la correcta.</p>
-            </div>
-            <div class="card">
-                <p class="q">"Nos enteramos tarde."</p>
-                <p>Un sobrecosto, un cliente perdido o una meta incumplida se detecta cuando ya no hay tiempo de corregir.</p>
-            </div>
-            <div class="card">
-                <p class="q">"No miramos indicadores clave."</p>
-                <p>Hay medidas que ya deberías seguir, pero nadie las pidió porque nadie sabía que se podían ver.</p>
-            </div>
+        <p class="lead">Lo que más escuchamos de empresas que reportan en Excel.</p>
+        <div class="grid">
+            <div class="card bad"><div class="ico">👤</div><h3>Dependen de una persona</h3><p>Si ella falta, nadie actualiza el reporte.</p></div>
+            <div class="card bad"><div class="ico">🐢</div><h3>Excel manual y lento</h3><p>Copiar y pegar cada semana, con errores que nadie ve.</p></div>
+            <div class="card bad"><div class="ico">⏳</div><h3>Datos desactualizados</h3><p>Los reportes llegan viejos o incompletos.</p></div>
+            <div class="card bad"><div class="ico">🔀</div><h3>Cada área, un número</h3><p>Ventas, finanzas y operaciones no coinciden.</p></div>
+            <div class="card bad"><div class="ico">🚨</div><h3>Se enteran tarde</h3><p>Sobrecostos y metas incumplidas se ven sin tiempo de corregir.</p></div>
+            <div class="card bad"><div class="ico">🙈</div><h3>KPIs sin mirar</h3><p>Indicadores clave que nadie ha medido todavía.</p></div>
         </div>
     </section>
 
-    <!-- DASHBOARDS: BENEFICIOS -->
-    <section id="dashboards" class="section-purple">
-        <h2>Dashboards en Power BI hechos a tu medida</h2>
-        <p class="lead">Es nuestro servicio principal. Conectamos tus archivos y sistemas, y los convertimos en un tablero claro para tomar decisiones.</p>
-
-        <div class="cards">
-            <div class="card">
-                <p class="q">Actualizados varias veces al día</p>
-                <p>Los datos se refrescan automáticamente en los horarios que definamos. Abres el reporte y ya está al día.</p>
-            </div>
-            <div class="card">
-                <p class="q">Sin depender de nadie</p>
-                <p>Ninguna persona tiene que armar el reporte a mano. El proceso queda automatizado y documentado.</p>
-            </div>
-            <div class="card">
-                <p class="q">Una sola versión de los datos</p>
-                <p>Todas las áreas ven las mismas cifras. Las reuniones pasan de discutir números a tomar decisiones.</p>
-            </div>
-            <div class="card">
-                <p class="q">KPIs que no tenías en cuenta</p>
-                <p>Te mostramos indicadores que ya deberías seguir, adaptados a tu sector y a tu operación.</p>
-            </div>
-            <div class="card">
-                <p class="q">Tu equipo queda capacitado</p>
-                <p>Te enseñamos a filtrar, interpretar y usar el reporte, para que lo adopten y no se quede sin abrir.</p>
-            </div>
-            <div class="card">
-                <p class="q">Vender más y mejorar procesos</p>
-                <p>Ves qué productos, clientes y etapas frenan tus resultados, y actúas sobre ellos con datos.</p>
-            </div>
+    <!-- DASHBOARDS -->
+    <section id="dashboards" class="bg-purple">
+        <h2>Dashboards en Power BI a tu medida</h2>
+        <p class="lead">Nuestro servicio principal.</p>
+        <div class="grid">
+            <div class="card"><div class="ico">🔄</div><h3>Actualización automática</h3><p>Varias veces al día, sin trabajo manual.</p></div>
+            <div class="card"><div class="ico">🔓</div><h3>Sin depender de nadie</h3><p>El proceso queda automatizado y documentado.</p></div>
+            <div class="card"><div class="ico">🎯</div><h3>Una sola versión</h3><p>Todas las áreas ven las mismas cifras.</p></div>
+            <div class="card"><div class="ico">💡</div><h3>KPIs nuevos</h3><p>Indicadores que ya deberías seguir.</p></div>
+            <div class="card"><div class="ico">🎓</div><h3>Equipo capacitado</h3><p>Aprenden a usar e interpretar el reporte.</p></div>
+            <div class="card"><div class="ico">📈</div><h3>Más ventas, mejores procesos</h3><p>Ves qué frena tus resultados y actúas.</p></div>
         </div>
     </section>
 
-    <!-- TABLERO DE EJEMPLO -->
-    <section class="section-white">
+    <!-- TABLERO -->
+    <section class="bg-white">
         <h2>Lo que verías cada mañana</h2>
-        <p class="lead">Tres vistas que a todo gerente le gusta tener a mano. Se pueden filtrar por mes, área, producto o sucursal.</p>
-
-        <div class="tablero" aria-label="Ejemplo ilustrativo de tablero gerencial">
-            <div class="caption"><span>Tablero gerencial</span><span>Datos de ejemplo</span></div>
-
-            <div class="tile">
-                <h3>Cumplimiento vs presupuesto</h3>
-                <div class="row"><span>Línea A</span><div class="track"><i style="width:100%"></i></div><b>104%</b></div>
-                <div class="row"><span>Línea B</span><div class="track"><i style="width:91%"></i></div><b>91%</b></div>
-                <div class="row"><span>Línea C</span><div class="track"><i class="low" style="width:76%"></i></div><b>76%</b></div>
-                <p class="nota">En amarillo, lo que va por debajo de la meta.</p>
-            </div>
-
-            <div class="tile">
-                <h3>Variación vs año anterior</h3>
-                <div class="var"><span>Ventas totales</span><span class="up">▲ 12%</span></div>
-                <div class="var"><span>Margen bruto</span><span class="up">▲ 3%</span></div>
-                <div class="var"><span>Clientes activos</span><span class="down">▼ 5%</span></div>
-                <div class="var"><span>Costos operativos</span><span class="down">▲ 9%</span></div>
-            </div>
-
-            <div class="tile">
-                <h3>Mayores costos</h3>
-                <div class="row"><span>Nómina</span><div class="track"><i style="width:82%"></i></div><b>34%</b></div>
-                <div class="row"><span>Materia prima</span><div class="track"><i style="width:58%"></i></div><b>24%</b></div>
-                <div class="row"><span>Logística</span><div class="track"><i style="width:38%"></i></div><b>16%</b></div>
-                <div class="row"><span>Arriendo</span><div class="track"><i style="width:22%"></i></div><b>9%</b></div>
-                <p class="nota">Pocos rubros concentran la mayor parte del gasto.</p>
+        <p class="lead">Filtra por mes, área, producto o sucursal.</p>
+        <div class="tablero">
+            <p class="cap">Datos de ejemplo</p>
+            <div class="grid">
+                <div class="card">
+                    <h3>Cumplimiento vs presupuesto</h3>
+                    <div class="row"><span>Línea A</span><div class="track"><i style="width:100%"></i></div><b>104%</b></div>
+                    <div class="row"><span>Línea B</span><div class="track"><i style="width:91%"></i></div><b>91%</b></div>
+                    <div class="row"><span>Línea C</span><div class="track"><i class="low" style="width:76%"></i></div><b>76%</b></div>
+                    <p class="nota">Amarillo: por debajo de la meta.</p>
+                </div>
+                <div class="card">
+                    <h3>Variación vs año anterior</h3>
+                    <div class="var"><span>Ventas</span><span class="up">▲ 12%</span></div>
+                    <div class="var"><span>Margen bruto</span><span class="up">▲ 3%</span></div>
+                    <div class="var"><span>Clientes activos</span><span class="down">▼ 5%</span></div>
+                    <div class="var"><span>Costos</span><span class="down">▲ 9%</span></div>
+                </div>
+                <div class="card">
+                    <h3>Mayores costos</h3>
+                    <div class="row"><span>Nómina</span><div class="track"><i style="width:82%"></i></div><b>34%</b></div>
+                    <div class="row"><span>Materia prima</span><div class="track"><i style="width:58%"></i></div><b>24%</b></div>
+                    <div class="row"><span>Logística</span><div class="track"><i style="width:38%"></i></div><b>16%</b></div>
+                    <div class="row"><span>Arriendo</span><div class="track"><i style="width:22%"></i></div><b>9%</b></div>
+                </div>
             </div>
         </div>
-
-        <p class="tablero-nota">Tu tablero se construye con tus datos y tus metas, no con una plantilla genérica.</p>
     </section>
 
     <!-- KPIs -->
-    <section id="kpis" class="section-soft">
-        <h2>Los KPIs que deberías estar viendo</h2>
-        <p class="lead">Cada uno responde una pregunta de negocio. Te explicamos qué dice y cómo mejorarlo.</p>
-
-        <div class="cards">
-            <article class="kpi-card">
-                <h3>Cumplimiento vs presupuesto</h3>
-                <p class="que">Qué porcentaje de lo planeado llevas, por área y por mes. Te permite corregir antes del cierre y no después.</p>
-                <p class="mejora"><b>Cómo mejorarlo:</b> revisa cada semana las áreas por debajo de la meta, ajusta el plan a mitad de periodo y asigna un responsable a cada desviación.</p>
-            </article>
-            <article class="kpi-card">
-                <h3>Variación vs año anterior</h3>
-                <p class="que">Si creces o caes frente al mismo periodo del año pasado, y qué producto, cliente o sucursal lo explica.</p>
-                <p class="mejora"><b>Cómo mejorarlo:</b> identifica qué línea impulsa el crecimiento y refuérzala. Diagnostica la que cae antes de que arrastre al resto.</p>
-            </article>
-            <article class="kpi-card">
-                <h3>Mayores costos</h3>
-                <p class="que">Los pocos rubros que concentran la mayor parte de tu gasto, y cómo cambian mes a mes.</p>
-                <p class="mejora"><b>Cómo mejorarlo:</b> renegocia con los proveedores de los principales rubros, vigila alzas inesperadas y elimina gastos duplicados.</p>
-            </article>
-            <article class="kpi-card">
-                <h3>Margen por producto o cliente</h3>
-                <p class="que">Cuánto te queda realmente después de costos. Vender mucho no siempre significa ganar mucho.</p>
-                <p class="mejora"><b>Cómo mejorarlo:</b> revisa precios y descuentos de lo que vende mucho y deja poco, y empuja lo que deja mejor margen.</p>
-            </article>
-            <article class="kpi-card">
-                <h3>Ticket promedio</h3>
-                <p class="que">Cuánto compra, en promedio, un cliente en cada venta. Es una de las formas más rápidas de crecer sin buscar más clientes.</p>
-                <p class="mejora"><b>Cómo mejorarlo:</b> ofrece paquetes, ventas cruzadas y descuentos por volumen.</p>
-            </article>
-            <article class="kpi-card">
-                <h3>Retención de clientes</h3>
-                <p class="que">Cuántos clientes vuelven a comprar y cuántos dejaron de hacerlo. Conseguir un cliente nuevo cuesta más que conservar uno.</p>
-                <p class="mejora"><b>Cómo mejorarlo:</b> contacta a quienes llevan tiempo sin comprar y crea incentivos de recompra y seguimiento postventa.</p>
-            </article>
-            <article class="kpi-card">
-                <h3>Rotación de inventario</h3>
-                <p class="que">Qué tan rápido se vende lo que compras. Inventario quieto es dinero detenido.</p>
-                <p class="mejora"><b>Cómo mejorarlo:</b> compra menos de lo que rota lento, repón a tiempo lo que rota rápido y liquida lo estancado.</p>
-            </article>
-            <article class="kpi-card">
-                <h3>Cartera y días de cobro</h3>
-                <p class="que">Cuánto tarda en entrar el dinero que ya vendiste y cuánto está vencido.</p>
-                <p class="mejora"><b>Cómo mejorarlo:</b> envía recordatorios antes del vencimiento, prioriza los saldos más grandes y deja claras las condiciones de pago.</p>
-            </article>
-            <article class="kpi-card">
-                <h3>Cumplimiento de entregas</h3>
-                <p class="que">Qué porcentaje de pedidos o servicios se entrega a tiempo, y en qué etapa se demoran.</p>
-                <p class="mejora"><b>Cómo mejorarlo:</b> mide el tiempo de cada etapa, encuentra el cuello de botella y atácalo primero.</p>
-            </article>
+    <section id="kpis" class="bg-lav">
+        <h2>KPIs que deberías estar viendo</h2>
+        <p class="lead">Qué mide cada uno y cómo mejorarlo.</p>
+        <div class="grid">
+            <div class="card kpi-card"><h3>Cumplimiento vs presupuesto</h3>
+                <p><span class="tag mide">Mide</span><br>Cuánto de lo planeado llevas, por área y mes.</p>
+                <p><span class="tag mejora">Mejora</span><br>Revisa semanalmente lo que va por debajo y asigna un responsable.</p></div>
+            <div class="card kpi-card"><h3>Variación vs año anterior</h3>
+                <p><span class="tag mide">Mide</span><br>Si creces o caes frente al mismo periodo del año pasado.</p>
+                <p><span class="tag mejora">Mejora</span><br>Refuerza lo que crece y diagnostica lo que cae.</p></div>
+            <div class="card kpi-card"><h3>Mayores costos</h3>
+                <p><span class="tag mide">Mide</span><br>Los pocos rubros que concentran el gasto.</p>
+                <p><span class="tag mejora">Mejora</span><br>Renegocia los principales y elimina duplicados.</p></div>
+            <div class="card kpi-card"><h3>Margen por producto o cliente</h3>
+                <p><span class="tag mide">Mide</span><br>Cuánto te queda después de costos.</p>
+                <p><span class="tag mejora">Mejora</span><br>Ajusta precios y descuentos de lo que vende mucho y deja poco.</p></div>
+            <div class="card kpi-card"><h3>Ticket promedio</h3>
+                <p><span class="tag mide">Mide</span><br>Cuánto compra un cliente por venta.</p>
+                <p><span class="tag mejora">Mejora</span><br>Paquetes, ventas cruzadas y descuentos por volumen.</p></div>
+            <div class="card kpi-card"><h3>Retención de clientes</h3>
+                <p><span class="tag mide">Mide</span><br>Cuántos vuelven a comprar.</p>
+                <p><span class="tag mejora">Mejora</span><br>Contacta a quienes dejaron de comprar y haz seguimiento postventa.</p></div>
+            <div class="card kpi-card"><h3>Rotación de inventario</h3>
+                <p><span class="tag mide">Mide</span><br>Qué tan rápido se vende lo que compras.</p>
+                <p><span class="tag mejora">Mejora</span><br>Compra menos de lo lento y liquida lo estancado.</p></div>
+            <div class="card kpi-card"><h3>Cartera y días de cobro</h3>
+                <p><span class="tag mide">Mide</span><br>Cuánto tarda en entrar lo que ya vendiste.</p>
+                <p><span class="tag mejora">Mejora</span><br>Recordatorios antes del vencimiento y prioridad a saldos grandes.</p></div>
+            <div class="card kpi-card"><h3>Entregas a tiempo</h3>
+                <p><span class="tag mide">Mide</span><br>Porcentaje de pedidos entregados a tiempo.</p>
+                <p><span class="tag mejora">Mejora</span><br>Mide cada etapa y ataca el cuello de botella.</p></div>
         </div>
     </section>
 
-    <!-- MACHINE LEARNING (30%) -->
-    <section id="ml" class="section-purple">
+    <!-- MACHINE LEARNING -->
+    <section id="ml" class="bg-purple">
         <h2>Después de los reportes, predecir</h2>
-        <p class="lead">Con tus datos ya ordenados, el machine learning pasa de mostrar lo que ocurrió a anticipar lo que viene.</p>
-
-        <div class="cards">
-            <div class="card">
-                <p class="q">Pronóstico de ventas</p>
-                <p>Cuánto vas a vender, para planear compras, personal y presupuesto con menos incertidumbre.</p>
-            </div>
-            <div class="card">
-                <p class="q">Clientes en riesgo de irse</p>
-                <p>Una lista priorizada para que tu equipo actúe antes de perder al cliente.</p>
-            </div>
-            <div class="card">
-                <p class="q">Segmentación de clientes</p>
-                <p>Grupos según su comportamiento de compra, cada uno con su propia estrategia.</p>
-            </div>
-            <div class="card">
-                <p class="q">Gastos u operaciones inusuales</p>
-                <p>Alertas sobre movimientos fuera de lo normal, antes del cierre de mes.</p>
-            </div>
+        <p class="lead">Con datos ordenados, el machine learning anticipa lo que viene.</p>
+        <div class="grid">
+            <div class="card"><div class="ico">🔮</div><h3>Pronóstico de ventas</h3><p>Cuánto vas a vender para planear compras y presupuesto.</p></div>
+            <div class="card"><div class="ico">🚪</div><h3>Clientes en riesgo</h3><p>Quiénes están por irse, para actuar a tiempo.</p></div>
+            <div class="card"><div class="ico">🧩</div><h3>Segmentación</h3><p>Grupos de clientes con estrategia propia.</p></div>
+            <div class="card"><div class="ico">🔎</div><h3>Gastos inusuales</h3><p>Alertas de movimientos fuera de lo normal.</p></div>
         </div>
-
-        <div class="nota-box">
-            <p>Lo recomendable es empezar por los dashboards, porque ordenan tus datos y muestran dónde está el valor. Si tus datos ya están listos, también desarrollamos modelos de machine learning por separado.</p>
-        </div>
+        <div class="nota-box">Recomendamos empezar por los dashboards. Si tus datos ya están listos, también hacemos modelos de ML por separado.</div>
     </section>
 
     <!-- PROCESO -->
-    <section id="proceso" class="section-white">
+    <section id="proceso" class="bg-white">
         <h2>Así trabajamos</h2>
-        <p class="lead">Primero los reportes, después los modelos. Con entregas visibles desde las primeras semanas.</p>
-
-        <ol class="steps">
-            <li>
-                <h3>Escuchamos</h3>
-                <p>Nos cuentas qué decisiones quieres tomar, qué KPIs te faltan y qué datos tienes, aunque estén en Excel.</p>
-            </li>
-            <li>
-                <h3>Construimos los dashboards</h3>
-                <p>Unificamos tus fuentes y diseñamos los reportes en Power BI, con revisiones contigo.</p>
-            </li>
-            <li>
-                <h3>Automatizamos y capacitamos</h3>
-                <p>Programamos las actualizaciones y enseñamos a tu equipo a usar y entender cada indicador.</p>
-            </li>
-            <li>
-                <h3>Predecimos (opcional)</h3>
-                <p>Con los datos ya confiables, desarrollamos modelos de machine learning para anticipar lo que viene.</p>
-            </li>
-        </ol>
+        <p class="lead">Primero los reportes, después los modelos.</p>
+        <div class="grid steps">
+            <div class="card step"><h3>Escuchamos</h3><p>Qué decisiones quieres tomar y qué datos tienes.</p></div>
+            <div class="card step"><h3>Construimos</h3><p>Unificamos tus fuentes y diseñamos los dashboards.</p></div>
+            <div class="card step"><h3>Automatizamos y capacitamos</h3><p>Programamos actualizaciones y entrenamos a tu equipo.</p></div>
+            <div class="card step opt"><h3>Predecimos (opcional)</h3><p>Modelos de ML sobre datos ya confiables.</p></div>
+        </div>
     </section>
 
     <!-- FAQ -->
-    <section id="faq" class="section-soft">
+    <section id="faq" class="bg-lav">
         <h2>Preguntas frecuentes</h2>
-        <p class="lead">Las dudas más comunes antes de empezar.</p>
-
+        <p class="lead">Respuestas rápidas.</p>
         <div class="faq">
-            <details>
-                <summary>¿Quién actualiza el reporte?</summary>
-                <p>Nadie. Se programa para que se actualice solo, sin que una persona tenga que hacerlo a mano.</p>
-            </details>
-            <details>
-                <summary>¿Cada cuánto se actualiza?</summary>
-                <p>Varias veces al día. La frecuencia exacta depende de tu licencia de Power BI y de tus fuentes de datos, y la definimos contigo.</p>
-            </details>
-            <details>
-                <summary>¿Necesito un sistema o base de datos sofisticada?</summary>
-                <p>No. Muchas empresas empiezan con archivos de Excel. Si tienes un ERP o una base de datos, también nos conectamos a ellos.</p>
-            </details>
-            <details>
-                <summary>¿Puedo contratar solo machine learning?</summary>
-                <p>Sí, si tus datos ya están ordenados y tienen suficiente historia. En la primera conversación los revisamos y te decimos con honestidad si alcanzan.</p>
-            </details>
-            <details>
-                <summary>¿Mi equipo podrá usarlo sin ayuda técnica?</summary>
-                <p>Sí. Diseñamos para gerentes y áreas no técnicas, y capacitamos a tu equipo al entregar.</p>
-            </details>
-            <details>
-                <summary>¿Mis datos están seguros?</summary>
-                <p>Trabajamos solo con la información necesaria, bajo acuerdos de confidencialidad, y puedes mantener tus datos en tus propios sistemas.</p>
-            </details>
+            <details><summary>¿Quién actualiza el reporte?</summary><p>Nadie: se actualiza solo.</p></details>
+            <details><summary>¿Cada cuánto se actualiza?</summary><p>Varias veces al día. Depende de tu licencia de Power BI y de tus fuentes; lo definimos contigo.</p></details>
+            <details><summary>¿Necesito un sistema sofisticado?</summary><p>No. Podemos partir de tus archivos de Excel.</p></details>
+            <details><summary>¿Puedo contratar solo ML?</summary><p>Sí, si tus datos están ordenados y tienen suficiente historia. Los revisamos primero.</p></details>
+            <details><summary>¿Mis datos están seguros?</summary><p>Trabajamos bajo confidencialidad y con lo mínimo necesario.</p></details>
         </div>
     </section>
 
     <!-- CONTACTO -->
-    <section id="contacto" class="section-purple">
+    <section id="contacto" class="bg-purple">
         <h2>Cuéntanos qué necesitas</h2>
-        <p class="lead">Déjanos tus datos y un mensaje. Te respondemos para agendar una conversación sin compromiso.</p>
+        <p class="lead">Te respondemos para agendar una conversación sin compromiso.</p>
 
         <form class="form" id="form-contacto">
             <label>Correo electrónico
                 <input type="email" id="correo" required placeholder="nombre@empresa.com">
             </label>
-
             <label>Empresa
                 <input type="text" id="empresa" required placeholder="Nombre de tu empresa">
             </label>
-
             <label>¿Qué necesitas?
                 <select id="necesidad">
-                    <option value="dashboards">Reportes y dashboards en Power BI</option>
+                    <option value="dashboards">Dashboards en Power BI</option>
                     <option value="ml">Un modelo de machine learning</option>
                     <option value="ambos">Dashboards y machine learning</option>
                     <option value="no-se">No estoy seguro, quiero orientación</option>
                 </select>
             </label>
-
             <label>Mensaje
                 <textarea id="mensaje"></textarea>
             </label>
-
             <button type="submit" class="btn">Enviar mensaje</button>
-            <small>Al enviar, se abrirá tu programa de correo con el mensaje listo.</small>
+            <small>Se abrirá tu programa de correo con el mensaje listo.</small>
         </form>
     </section>
 
